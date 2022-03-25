@@ -1,34 +1,29 @@
-import { StyleSheet, Text, View } from 'react-native';
-import { Task } from './components';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import React from 'react';
 
-export default function App() {
+import { TaskContextProvider } from './hooks';
+import { DetailsScreen, HomeScreen } from './screens';
+
+const Stack = createNativeStackNavigator();
+
+export default function App(): React.ReactElement {
   return (
-    <View style={styles.container}>
-      <View style={styles.tasksWrapper}>
-        <Text style={styles.sectionTitle}>Today's tasks</Text>
-        <View style={styles.items}>
-          <Task text="this is a task" />
-          <Task text="task 2" />
-        </View>
-      </View>
-    </View>
+    <TaskContextProvider>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Home"
+            component={HomeScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Details"
+            component={DetailsScreen}
+            options={{ title: 'Task Details' }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </TaskContextProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#e8eaed',
-  },
-  tasksWrapper: {
-    paddingTop: 80,
-    paddingHorizontal: 20,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: 'bold',
-  },
-  items: {
-    marginTop: 30,
-  },
-});

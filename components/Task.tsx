@@ -1,13 +1,27 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { NavigationProps } from '../screens/types';
 
-export default function Task({ text }) {
+import { TaskPropTypes } from './types';
+
+export default function Task({ id, text }: TaskPropTypes): React.ReactElement {
+  const navigation = useNavigation<NavigationProps>();
+
   return (
     <View style={styles.item}>
       <View style={styles.itemLeft}>
         <View style={styles.square} />
         <Text style={styles.itemText}>{text}</Text>
       </View>
-      <View style={styles.circular}></View>
+      <TouchableOpacity
+        onPress={() =>
+          navigation.navigate('Details', {
+            taskId: id,
+          })
+        }
+      >
+        <View style={styles.circular} />
+      </TouchableOpacity>
     </View>
   );
 }
@@ -42,7 +56,7 @@ const styles = StyleSheet.create({
   circular: {
     width: 12,
     height: 12,
-    borderColor: '#55bbf6',
+    borderColor: 'orange',
     borderWidth: 2,
     borderRadius: 5,
   },
