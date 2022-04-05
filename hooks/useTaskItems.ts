@@ -1,19 +1,32 @@
 import { useState } from 'react';
 
-import { UseTaskItemsReturn } from './types';
+import { Task, UseTaskItemsReturn } from './types';
 
 export default function useTaskItems(): UseTaskItemsReturn {
-  const [taskItems, setTaskItems] = useState(['1', '2', '3'] as string[]);
+  const [taskItems, setTaskItems] = useState([
+    {
+      name: '1',
+      finished: false,
+    },
+    {
+      name: '2',
+      finished: false,
+    },
+    {
+      name: '3',
+      finished: false,
+    },
+  ] as Task[]);
 
   const addTask = (task: string) => {
-    setTaskItems(prevTasks => [...prevTasks, task]);
+    setTaskItems(prevTasks => [...prevTasks, { name: task, finished: false }]);
   };
 
   const completeTask = (itemIndex: number) => {
     setTaskItems(taskItems.filter((_, index) => index !== itemIndex));
   };
 
-  const editTask = (taskIndex: number, task: string) => {
+  const editTask = (taskIndex: number, task: Task) => {
     setTaskItems(prevTasks =>
       prevTasks.map((prevTask, index) =>
         index === taskIndex ? task : prevTask

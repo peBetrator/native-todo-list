@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { AddTaskInput, TaskList } from '../components';
-import { useTaskItems } from '../hooks';
 
 export default function HomeScreen(): React.ReactElement {
   return (

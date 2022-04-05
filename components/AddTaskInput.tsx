@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+
 import { useTasks } from '../hooks';
 
 export default function AddTaskInput(): React.ReactElement {
@@ -45,22 +46,12 @@ export default function AddTaskInput(): React.ReactElement {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#e8eaed',
-  },
-  tasksWrapper: {
-    paddingTop: 80,
-    paddingHorizontal: 20,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: 'bold',
-  },
   writeTaskWrapper: {
+    backgroundColor: '#e8eaed',
     width: '100%',
     position: 'absolute',
-    bottom: 60,
+    paddingBottom: 100,
+    bottom: 30,
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',

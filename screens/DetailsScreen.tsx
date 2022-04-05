@@ -38,9 +38,9 @@ export default function DetailsScreen({
         </TouchableOpacity>
       </View>
       <TextInput
-        style={styles.taskInput}
-        value={currentTask}
-        onChangeText={text => setCurrentTask(text)}
+        style={[styles.taskInput, isEdit ? {} : { backgroundColor: '#e8eaed' }]}
+        value={currentTask.name}
+        onChangeText={text => setCurrentTask({ ...currentTask, name: text })}
         editable={isEdit}
       />
     </View>
